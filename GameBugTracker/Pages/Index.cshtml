@@ -1,10 +1,29 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="py-4">
+    <h1 class="display-5 mb-3">Game Bug Tracker</h1>
+    <p class="lead">
+        Track bugs for your game project, keep the backlog organized, and build a clear record of what needs attention.
+    </p>
+
+    <div class="mt-4">
+        <h2 class="h4">Version 1 Goal</h2>
+        <p>
+            Start with a simple internal tracker for one game project. Players will be able to submit bugs in a later version.
+        </p>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="h4">What This App Will Do</h2>
+        <ul>
+            <li>List bug reports</li>
+            <li>Create new bug reports</li>
+            <li>View bug details</li>
+            <li>Update bug status and severity</li>
+        </ul>
+    </div>
 </div>

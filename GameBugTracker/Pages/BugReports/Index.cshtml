@@ -5,8 +5,13 @@
 }
 
 <div class="py-4">
-    <h1 class="mb-3">Bug Reports</h1>
-    <p class="text-muted">Current bugs for the game project.</p>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h1 class="mb-1">Bug Reports</h1>
+            <p class="text-muted mb-0">Current bugs for the game project.</p>
+        </div>
+        <a class="btn btn-primary" asp-page="/BugReports/Create">New Bug Report</a>
+    </div>
 
     @if (Model.BugReports.Count == 0)
     {

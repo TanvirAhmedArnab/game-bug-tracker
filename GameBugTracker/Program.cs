@@ -1,3 +1,6 @@
+using GameBugTracker.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace GameBugTracker
 {
     public class Program
@@ -5,9 +8,13 @@ namespace GameBugTracker
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' was not found.");
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlite(connectionString));
 
             var app = builder.Build();
 

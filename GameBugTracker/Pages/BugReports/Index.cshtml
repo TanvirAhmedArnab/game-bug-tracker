@@ -33,7 +33,9 @@
                     @foreach (var bug in Model.BugReports)
                     {
                         <tr>
-                            <td>@bug.Title</td>
+                            <td>
+                                <a asp-page="/BugReports/Details" asp-route-id="@bug.Id">@bug.Title</a>
+                            </td>
                             <td>@bug.Severity</td>
                             <td>@bug.Status</td>
                             <td>@bug.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>

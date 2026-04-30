@@ -10,7 +10,10 @@
             <h1 class="mb-1">@Model.BugReport!.Title</h1>
             <p class="text-muted mb-0">Bug report details for the current game project.</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-page="/BugReports/Index">Back to List</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-primary" asp-page="/BugReports/Edit" asp-route-id="@Model.BugReport.Id">Edit Bug Report</a>
+            <a class="btn btn-outline-secondary" asp-page="/BugReports/Index">Back to List</a>
+        </div>
     </div>
 
     <dl class="row">

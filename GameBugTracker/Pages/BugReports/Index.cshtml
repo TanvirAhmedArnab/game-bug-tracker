@@ -15,7 +15,10 @@
 
     @if (Model.BugReports.Count == 0)
     {
-        <p>No bug reports yet.</p>
+        <div class="border rounded p-4 bg-light">
+            <p class="mb-3">No bug reports yet.</p>
+            <a class="btn btn-primary" asp-page="/BugReports/Create">Create the first bug report</a>
+        </div>
     }
     else
     {

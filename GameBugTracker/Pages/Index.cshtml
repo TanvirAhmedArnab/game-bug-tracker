@@ -1,7 +1,9 @@
-﻿@page
+@page
 @model IndexModel
+@inject IOptions<SiteOwnerOptions> SiteOwnerOptionsAccessor
 @{
     ViewData["Title"] = "Home";
+    var owner = SiteOwnerOptionsAccessor.Value;
 }
 
 <div class="py-4">
@@ -9,10 +11,20 @@
     <p class="lead">
         Track bugs for your game project, keep the backlog organized, and build a clear record of what needs attention.
     </p>
+    <p class="text-muted">
+        Created by <strong>@owner.Name</strong> as a public portfolio demo for junior C# / .NET roles.
+    </p>
 
     <div class="d-flex gap-2 mt-4">
         <a class="btn btn-primary" asp-page="/BugReports/Index">View Bug Reports</a>
-        <a class="btn btn-outline-secondary" asp-page="/BugReports/Create">Create Bug Report</a>
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a class="btn btn-outline-secondary" asp-page="/BugReports/Create">Create Bug Report</a>
+        }
+        else
+        {
+            <a class="btn btn-outline-secondary" asp-page="/Auth/Login">Owner Sign In</a>
+        }
     </div>
 
     <div class="mt-4">
@@ -30,5 +42,12 @@
             <li>View bug details</li>
             <li>Update bug status and severity</li>
         </ul>
+    </div>
+
+    <div class="mt-4 border rounded p-3 bg-light">
+        <h2 class="h5 mb-2">Public Demo Access</h2>
+        <p class="mb-0">
+            Recruiters and interviewers can browse the tracker anonymously. Creating or editing bug reports is reserved for the owner account.
+        </p>
     </div>
 </div>

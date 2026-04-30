@@ -10,14 +10,28 @@
             <h1 class="mb-1">Bug Reports</h1>
             <p class="text-muted mb-0">Current bugs for the game project.</p>
         </div>
-        <a class="btn btn-primary" asp-page="/BugReports/Create">New Bug Report</a>
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a class="btn btn-primary" asp-page="/BugReports/Create">New Bug Report</a>
+        }
+        else
+        {
+            <a class="btn btn-outline-secondary" asp-page="/Auth/Login">Owner Sign In</a>
+        }
     </div>
 
     @if (Model.BugReports.Count == 0)
     {
         <div class="border rounded p-4 bg-light">
             <p class="mb-3">No bug reports yet.</p>
-            <a class="btn btn-primary" asp-page="/BugReports/Create">Create the first bug report</a>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <a class="btn btn-primary" asp-page="/BugReports/Create">Create the first bug report</a>
+            }
+            else
+            {
+                <a class="btn btn-outline-secondary" asp-page="/Auth/Login">Owner Sign In</a>
+            }
         </div>
     }
     else

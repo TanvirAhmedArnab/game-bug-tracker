@@ -1,0 +1,45 @@
+@page
+@model GameBugTracker.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Owner Sign In";
+}
+
+<div class="py-4">
+    <h1 class="mb-3">Owner Sign In</h1>
+    <p class="text-muted">
+        This public demo allows anyone to browse bug reports. Only the owner account can create or edit them.
+    </p>
+
+    @if (!Model.IsAdminConfigured)
+    {
+        <div class="alert alert-warning mt-4" role="alert">
+            Owner sign-in is currently unavailable because the admin password has not been configured in the environment.
+        </div>
+    }
+
+    <form method="post" class="mt-4">
+        <input type="hidden" asp-for="ReturnUrl" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Input.UserName" class="form-label"></label>
+            <input asp-for="Input.UserName" class="form-control" autocomplete="username" />
+            <span asp-validation-for="Input.UserName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Input.Password" class="form-label"></label>
+            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" @(Model.IsAdminConfigured ? null : "disabled")>Sign In</button>
+            <a class="btn btn-outline-secondary" asp-page="/BugReports/Index">Back to Bug Reports</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

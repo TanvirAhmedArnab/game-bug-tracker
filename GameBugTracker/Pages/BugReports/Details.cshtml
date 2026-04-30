@@ -11,7 +11,10 @@
             <p class="text-muted mb-0">Bug report details for the current game project.</p>
         </div>
         <div class="d-flex gap-2">
-            <a class="btn btn-primary" asp-page="/BugReports/Edit" asp-route-id="@Model.BugReport.Id">Edit Bug Report</a>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <a class="btn btn-primary" asp-page="/BugReports/Edit" asp-route-id="@Model.BugReport.Id">Edit Bug Report</a>
+            }
             <a class="btn btn-outline-secondary" asp-page="/BugReports/Index">Back to List</a>
         </div>
     </div>
